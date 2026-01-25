@@ -1,0 +1,3 @@
+appName: iron-gallery-deployment-devops
+
+replicas: 3

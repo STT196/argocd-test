@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: iron-namespace-devops
+  name: {{ .Values.appName}}
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iron-gallery-deployment-devops
-  namespace: iron-namespace-devops
+  name: {{ .Values.appName}}
+  namespace: {{ .Values.appName}}
   labels:
-    run: iron-gallery
+    run: {{ .Values.appName}}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      run: iron-gallery
+      run: {{ .Values.appName}}
   template:
     metadata:
       labels:
-        run: iron-gallery
+        run: {{ .Values.appName}}
     spec:
       containers:
-        - name: iron-gallery-container-devops
+        - name: {{ .Values.appName}}-container
           image: kodekloud/irongallery:2.0
           resources:
             limits:
@@ -46,8 +46,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iron-db-deployment-devops
-  namespace: iron-namespace-devops
+  name: {{ .Values.appName}}-db
+  namespace: {{ .Values.appName}}
   labels:
     db: mariadb
 spec:
@@ -61,7 +61,7 @@ spec:
         db: mariadb
     spec:
       containers:
-        - name: iron-db-container-devops
+        - name: {{ .Values.appName}}-db-container
           image: kodekloud/irondb:2.0
           env:
             - name: MYSQL_DATABASE
@@ -87,7 +87,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: iron-db-service-devops
-  namespace: iron-namespace-devops
+  namespace: {{ .Values.appName}}
 spec:
   selector:
     db: mariadb
@@ -102,7 +102,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: iron-gallery-service-devops
-  namespace: iron-namespace-devops
+  namespace: {{ .Values.appName}}
 spec:
   selector:
     run: iron-gallery
