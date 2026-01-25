@@ -98,17 +98,21 @@ spec:
   type: ClusterIP
 
 ---
-apiVersion: v1
-kind: Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: iron-gallery-service-devops
+  name: iron-gallery-ingress
   namespace: {{ .Values.appName}}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  selector:
-    run: iron-gallery
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 32678
-  type: NodePort
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.appName}}-service
+                port:
+                  number: 80
