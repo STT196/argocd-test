@@ -28,11 +28,14 @@ spec:
 
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "{{ .Values.backend.dbUrl }}"
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.appName}}-secret"
+                  key: SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name:" {{ .Values.appName}}-secret"
+                  name: "{{ .Values.appName}}-secret"
                   key: SPRING_DATASOURCE_USERNAME 
             - name: SPRING_DATASOURCE_PASSWORD
               value: ""
@@ -51,6 +54,11 @@ spec:
                 secretKeyRef:
                   name: "{{ .Values.appName}}-secret"
                   key: fromEmail
+            - name: emailKey
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.appName}}-secret"
+                  key: emailKey
             # - name: SPRING_JPA_HIBERNATE_DDL_AUTO
             #   value: update
             - name: emailKey
