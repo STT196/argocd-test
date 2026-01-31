@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: {{ .Values.appName }}-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: localhost
       http:
