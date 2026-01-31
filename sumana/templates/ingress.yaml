@@ -1,32 +1,33 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: sumana-ingress
-#   namespace: sumana-prod
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: /$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: ""
-#       http:
-#         paths:
-#           # Backend API
-#           - path: /api(/|$)(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: sumana-backend
-#                 port:
-#                   number: 8081
-#           # Frontend SPA
-#           - path: /(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: sumana-frontend
-#                 port:
-#                   number: 80
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sumana-ingress
+  namespace: sumana-prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ""
+      http:
+        paths:
+          # Backend API
+          - path: /api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sumana-backend
+                port:
+                  number: 8081
+          # Frontend SPA
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sumana-frontend
+                port:
+                  number: 80
+---
 
 apiVersion: v1
 kind: Service
