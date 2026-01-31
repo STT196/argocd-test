@@ -53,6 +53,8 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.appName}}-secret
                   key: fromEmail
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
             - name: emailKey
               valueFrom:
                 secretKeyRef:
