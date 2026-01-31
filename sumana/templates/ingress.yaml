@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appName }}-ingress
 spec:
   rules:
-    - host : localhost
+    - host: localhost
       http:
           paths:
           - path: /api
