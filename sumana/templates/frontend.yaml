@@ -17,6 +17,7 @@ spec:
       containers:
         - name: {{ .Values.appName }}-frontend
           image: {{ .Values.frontend.image }}
+          imagePullPolicy: Never
           ports:
             - containerPort: {{ .Values.frontend.port }}
           resources:
