@@ -1,6 +1,7 @@
 replicaCount: 1
 
 appName: sumana
+
 backend:
   image: apit:latest
   replicas: 2
@@ -14,3 +15,4 @@ frontend:
   port: 80
   memory: 300Mi
   cpu: 200m
+  dbUrl: jdbc:mysql://localhost:3306/test_motors_db?createDatabaseIfNotExist=true
