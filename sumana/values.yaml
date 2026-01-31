@@ -1,0 +1,16 @@
+replicaCount: 1
+
+appName: Sumana
+backend:
+  image: apit:latest
+  replicas: 2
+  port: 8081
+  memory: 200Mi
+  cpu: 100m
+
+frontend:
+  image: frontend:latest
+  replicas: 2
+  port: 80
+  memory: 300Mi
+  cpu: 200m

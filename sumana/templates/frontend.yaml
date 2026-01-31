@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-frontend
+  labels:
+    app: {{ .Values.appName }}-frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-frontend
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-frontend
+    spec:
+      containers:
+        - name: {{ .Values.appName }}-frontend
+          image: {{ .Values.frontend.image }}
+          ports:
+            - containerPort: {{ .Values.frontend.port }}
+          resources:
+            limits:
+              memory: "{{ .Values.frontend.memory }}"
+              cpu: "{{ .Values.frontend.cpu }}"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-frontend
+  labels:
+    app: {{ .Values.appName }}-frontend
+spec:
+  selector:
+    app: {{ .Values.appName }}-frontend
+  ports:
+    - port : {{ .Values.frontend.port }}
+      targetPort: {{ .Values.frontend.port }}
+  type: ClusterIP
