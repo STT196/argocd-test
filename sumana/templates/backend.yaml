@@ -25,43 +25,43 @@ spec:
             limits:
               memory: "{{ .Values.backend.memory }}"
               cpu: "{{ .Values.backend.cpu }}"
-
-        env:
+          env:
           - name: SPRING_DATASOURCE_URL
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: SPRING_DATASOURCE_URL
           - name: SPRING_DATASOURCE_USERNAME
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: SPRING_DATASOURCE_USERNAME 
           - name: SPRING_DATASOURCE_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: SPRING_DATASOURCE_PASSWORD
           - name: accessKey
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: accesskey
           - name: secret
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: secret
           - name: fromEmail
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: fromEmail
           - name: emailKey
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.appName}}-secret"
+                name: "{{ .Values.appName }}-secret"
                 key: emailKey
+
 
         
 ---
