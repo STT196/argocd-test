@@ -37,10 +37,7 @@ spec:
                   name: SPRING_DATASOURCE_USERNAME
                   key: SPRING_DATASOURCE_USERNAME 
             - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: SPRING_DATASOURCE_PASSWORD
-                  key: SPRING_DATASOURCE_PASSWORD
+              value: ""
             - name: port
               value: "{{ .Values.backend.port }}"
             - name: accessKey
