@@ -1,6 +1,6 @@
 replicaCount: 1
 
-appName: Sumana
+appName: sumana
 backend:
   image: apit:latest
   replicas: 2
