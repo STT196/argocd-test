@@ -43,6 +43,21 @@ spec:
                   key: SPRING_DATASOURCE_PASSWORD
             - name: port
               value: "{{ .Values.backend.port }}"
+            - name: accessKey
+              valueFrom:
+                secretKeyRef:
+                  name: accesskey
+                  key: accesskey
+            - name: secret
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: secret
+            - name: fromEmail
+              valueFrom:
+                secretKeyRef:
+                  name: fromEmail
+                  key: fromEmail
 
 ---
 
