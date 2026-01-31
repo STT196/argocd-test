@@ -37,10 +37,7 @@ spec:
                 name: "{{ .Values.appName }}-secret"
                 key: SPRING_DATASOURCE_USERNAME 
           - name: SPRING_DATASOURCE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: "{{ .Values.appName }}-secret"
-                key: SPRING_DATASOURCE_PASSWORD
+            value: ""
           - name: accessKey
             valueFrom:
               secretKeyRef:
