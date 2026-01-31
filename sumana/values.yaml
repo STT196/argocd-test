@@ -4,10 +4,10 @@ appName: sumana
 
 backend:
   image: apit:latest
-  replicas: 2
+  replicas: 1
   port: 8081
-  memory: 200Mi
-  cpu: 100m
+  memory: 512Mi
+  cpu: 250m
 
 frontend:
   image: frontend:latest
