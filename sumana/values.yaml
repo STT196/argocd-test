@@ -16,3 +16,6 @@ frontend:
   memory: 300Mi
   cpu: 200m
   dbUrl: jdbc:mysql://host.docker.internal:3306/test_motors_db?createDatabaseIfNotExist=true
+
+sql:
+  image: mysql:latest
