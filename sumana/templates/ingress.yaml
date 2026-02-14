@@ -6,6 +6,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
 spec:
+  tls:
+    - hosts:
+        - sumana.local
+        - api.sumana.local
+      secretName: sumana-tls-secret
   rules:
     - host: sumana.local
       http:
