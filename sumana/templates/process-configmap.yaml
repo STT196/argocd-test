@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName }}-process-config
+  namespace: {{ .Release.Namespace }}
+data:
+  process.yml: |
+    process_names:
+      - name: "{{.ExeBase}}"
+        exe:
+          - ".*"

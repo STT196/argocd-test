@@ -31,6 +31,14 @@ spec:
             - '--config.path=/config/process.yml'
           ports:
             - containerPort: 9256
+          volumeMounts:
+          volumeMounts:
+            - name: process-config
+              mountPath: /config
+      volumes:
+        - name: process-config
+          configMap:
+            name: {{ .Values.appName }}-process-config
 ---
 
 apiVersion: v1
