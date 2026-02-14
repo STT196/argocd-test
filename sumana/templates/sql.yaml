@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.appName}}-sql
+  labels:
+    app: {{ .Values.appName}}-sql
+  spec:
+    serviceName: "{{ .Values.appName}}-sql"
+    replicas: 1
+    selector:
+      matchLabels:
+        app: {{ .Values.appName}}-sql
+    template:
+      metadata:
+        labels:
+          app: {{ .Values.appName}}-sql
+      spec:
+        containers:
+          - name: {{ .Values.appName}}-sql
+            image: {{ .Values.sql.image }}
+            imagePullPolicy: Never
+            env:
+              - name: MYSQL_ROOT_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Values.appName }}-secret"
+                    key: SPRING_DATASOURCE_PASSWORD
+              - name: MYSQL_DATABASE
+                value: test_motors_db 
+            ports:
+              - containerPort: {{ .Values.sql.port }}
+            volumeMounts:
+              - name: sql-data
+                mountPath: /var/lib/mysql
+    volumeClaimTemplates:
+      - metadata:
+          name: sql-data
+        spec:
+          accessModes: 
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: {{ .Values.sql.storage }}
+            
+            
+         
