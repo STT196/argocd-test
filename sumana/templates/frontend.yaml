@@ -25,6 +25,12 @@ spec:
             limits:
               memory: "{{ .Values.frontend.memory }}"
               cpu: "{{ .Values.frontend.cpu }}"
+        - name: process-exporter
+          image: ncabatoff/process-exporter:latest
+          args:
+            - '--config.path=/config/process.yml'
+          ports:
+            - containerPort: 9256
 ---
 
 apiVersion: v1

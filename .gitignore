@@ -1,2 +1,4 @@
 sumana/treafik-config.yaml
 sumana/certs
+sumana/promithius.yaml
+sumana/prometheus-values.yaml
